@@ -17,7 +17,7 @@ const GOOGLE_NEWS_BASE_URL = 'https://news.google.com/';
 const GOOGLE_NEWS_SEARCH_URL = `${GOOGLE_NEWS_BASE_URL}search`;
 const DEFAULT_TIME_FRAME = '7d';
 
-const googleNewsScraper = async (
+export const googleNewsScraper = async (
   config: GoogleNewsScraperConfig
 ): Promise<ReadonlyArray<NeoGoogleNewsScraperResult>> => {
   const {
@@ -84,8 +84,6 @@ const googleNewsScraper = async (
   return filteredArticles;
 };
 
-const testTypes = (testObj: testInterface) => {
+export const testTypes = (testObj: testInterface) => {
   return testObj;
 };
-
-export { googleNewsScraper, testTypes };

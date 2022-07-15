@@ -1,4 +1,4 @@
-export * from './lib/googleNewsScraper';
-export * from './lib/buildQueryString';
-export * from './lib/fetchOGData';
-export * from './lib/fetchPrettyUrl';
+export { googleNewsScraper, testTypes } from './lib/googleNewsScraper';
+export { buildQueryString } from './lib/buildQueryString';
+export { fetchOGData, fetchOGDataForLink } from './lib/fetchOGData';
+export { fetchPrettyUrl, fetchPrettyUrlForLink } from './lib/fetchPrettyUrl';
