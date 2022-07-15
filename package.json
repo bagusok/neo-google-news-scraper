@@ -1,6 +1,6 @@
 {
   "name": "neo-scraper-google-news",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Google News Scraper in Typescript",
   "main": "build/main/index.js",
   "types": "build/main/index.d.ts",
