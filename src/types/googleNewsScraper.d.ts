@@ -1,4 +1,4 @@
-declare module 'neo-google-news-scraper' {
+declare module 'neo-scraper-google-news' {
   export type QueryVarsArgs = {
     readonly hl?: string;
     readonly gl?: string;

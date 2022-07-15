@@ -2,7 +2,7 @@
 /* eslint-disable functional/immutable-data */
 import axios from 'axios';
 import { load } from 'cheerio';
-import { NeoGoogleNewsScraperResult } from 'neo-google-news-scraper';
+import { NeoGoogleNewsScraperResult } from 'neo-scraper-google-news';
 
 export const fetchOGDataForLink = async (sourceUrl: string) => {
   const ogData = { link: '', image: '' };
