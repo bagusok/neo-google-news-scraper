@@ -23,6 +23,7 @@
     "mkdir",
     "prettierignore",
     "sandboxed",
+    "timeframe",
     "transpiled",
     "typedoc",
     "untracked"
