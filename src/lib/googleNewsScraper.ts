@@ -97,7 +97,7 @@ export const googleNewsScraper = async (config: {
       };
     } = {
       title: $(this).find('h3').text() || '',
-      link: link,
+      link,
       image: $(this).find('figure').find('img').attr('src') || '',
       source: $(this).find('div:last-child svg+a').text() || '',
       datetime:
