@@ -2,8 +2,6 @@
 import axios from 'axios';
 import { load } from 'cheerio';
 
-import { NeoGoogleNewsScraperResult } from '../types/googleNewsScraperTypes';
-
 export const fetchPrettyUrlForLink = async (sourceUrl: string) => {
   try {
     const response = await axios.get(sourceUrl);
@@ -22,8 +20,34 @@ export const fetchPrettyUrlForLink = async (sourceUrl: string) => {
 };
 
 export const fetchPrettyUrl = async (
-  articles: Array<NeoGoogleNewsScraperResult>
-): Promise<Array<NeoGoogleNewsScraperResult>> => {
+  articles: Array<{
+    readonly title: string;
+    readonly link: string;
+    readonly image: string;
+    readonly source: string;
+    readonly datetime: string | Date;
+    readonly time: string;
+    readonly prettyUrl?: string;
+    readonly ogData?: {
+      readonly link: string;
+      readonly image: string;
+    };
+  }>
+): Promise<
+  Array<{
+    readonly title: string;
+    readonly link: string;
+    readonly image: string;
+    readonly source: string;
+    readonly datetime: string | Date;
+    readonly time: string;
+    readonly prettyUrl?: string;
+    readonly ogData?: {
+      readonly link: string;
+      readonly image: string;
+    };
+  }>
+> => {
   const articleWithMetaDataPromises = await Promise.allSettled(
     articles.map(async (article) => ({
       ...article,

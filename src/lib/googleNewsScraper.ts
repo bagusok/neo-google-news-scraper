@@ -3,15 +3,9 @@
 import axios from 'axios';
 import { load } from 'cheerio';
 
-import {
-  NeoGoogleNewsScraperResult,
-  testInterface,
-} from '../types/googleNewsScraperTypes';
-
 import { buildQueryString } from './buildQueryString';
 import { fetchOGData } from './fetchOGData';
 import { fetchPrettyUrl } from './fetchPrettyUrl';
-// TODO: Check how peer dependencies work
 
 const GOOGLE_NEWS_BASE_URL = 'https://news.google.com/';
 const GOOGLE_NEWS_SEARCH_URL = `${GOOGLE_NEWS_BASE_URL}search`;
@@ -27,7 +21,21 @@ export const googleNewsScraper = async (config: {
     readonly ceid?: string;
   };
   readonly timeFrame?: string;
-}): Promise<ReadonlyArray<NeoGoogleNewsScraperResult>> => {
+}): Promise<
+  ReadonlyArray<{
+    readonly title: string;
+    readonly link: string;
+    readonly image: string;
+    readonly source: string;
+    readonly datetime: string | Date;
+    readonly time: string;
+    readonly prettyUrl?: string;
+    readonly ogData?: {
+      readonly link: string;
+      readonly image: string;
+    };
+  }>
+> => {
   const {
     searchTerm,
     shouldFetchPrettyUrls,
@@ -42,23 +50,56 @@ export const googleNewsScraper = async (config: {
   const $ = load(content);
   const articles = $('a[href^="./article"]').closest('div[jslog]');
   // eslint-disable-next-line functional/no-let, functional/prefer-readonly-type
-  let filteredArticles: Array<NeoGoogleNewsScraperResult> = [];
-  const urlChecklist = [];
+  let filteredArticles: Array<{
+    readonly title: string;
+    readonly link: string;
+    readonly image: string;
+    readonly source: string;
+    readonly datetime: string | Date;
+    readonly time: string;
+    readonly prettyUrl?: string;
+    readonly ogData?: {
+      readonly link: string;
+      readonly image: string;
+    };
+  }> = [];
+  // eslint-disable-next-line functional/prefer-readonly-type
+  const urlChecklist: Array<string> = [];
 
   $(articles).each(function () {
     const link =
       $(this)
-        .find('a[href^="./article"]')
-        .attr('href')
-        .replace('./', GOOGLE_NEWS_BASE_URL) || '';
+        ?.find('a[href^="./article"]')
+        ?.attr('href')
+        ?.replace('./', GOOGLE_NEWS_BASE_URL) || '';
     link && urlChecklist.push(link);
-    const mainArticle = {
+    const mainArticle: {
+      readonly title: string;
+      readonly link: string;
+      readonly image: string;
+      readonly source: string;
+      readonly datetime: string | Date;
+      readonly time: string;
+      readonly prettyUrl?: string;
+      // eslint-disable-next-line functional/prefer-readonly-type
+      readonly related?: Array<{
+        readonly title: string;
+        readonly link: string;
+        readonly source: string;
+        readonly time: string;
+      }>;
+      readonly ogData?: {
+        readonly link: string;
+        readonly image: string;
+      };
+    } = {
       title: $(this).find('h3').text() || '',
       link: link,
       image: $(this).find('figure').find('img').attr('src') || '',
       source: $(this).find('div:last-child svg+a').text() || '',
       datetime:
-        new Date($(this).find('div:last-child time').attr('datetime')) || '',
+        new Date(`${$(this).find('div:last-child time').attr('datetime')}`) ||
+        '',
       time: $(this).find('div:last-child time').text() || '',
       related: [],
     };
@@ -66,16 +107,16 @@ export const googleNewsScraper = async (config: {
     $(subArticles).each(function () {
       const subLink =
         $(this)
-          .find('a')
-          .first()
-          .attr('href')
-          .replace('./', GOOGLE_NEWS_BASE_URL) || '';
-      if (subLink && !urlChecklist.includes(subLink)) {
-        mainArticle.related.push({
+          ?.find('a')
+          ?.first()
+          ?.attr('href')
+          ?.replace('./', GOOGLE_NEWS_BASE_URL) || '';
+      if (subLink && !urlChecklist?.includes(subLink)) {
+        mainArticle?.related?.push({
           title: $(this).find('h4').text() || $(this).find('h4 a').text() || '',
           link: subLink,
-          source: $(this).find('div:last-child svg+a').text() || '',
-          time: $(this).find('div:last-child time').text() || '',
+          source: $(this)?.find('div:last-child svg+a').text() || '',
+          time: $(this)?.find('div:last-child time').text() || '',
         });
       }
     });
@@ -90,8 +131,4 @@ export const googleNewsScraper = async (config: {
   }
 
   return filteredArticles;
-};
-
-export const testTypes = (testObj: testInterface) => {
-  return testObj;
 };
