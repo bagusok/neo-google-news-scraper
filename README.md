@@ -55,7 +55,8 @@ The output is an array of JSON objects, with each article following the structur
     "prettyUrl": "https://www.foodnavigator-asia.com/Article/2022/07/15/india-focus-beam-suntory-travel-retail-focus-dole-juice-innovation-fresh-produce-shelf-life-booster-and-more",
     "ogData": {
       "link": "https://news.google.com",
-      "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+      "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300",
+      "description": "news description"
     }
   }
 ]

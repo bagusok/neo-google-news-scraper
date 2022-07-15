@@ -13,6 +13,7 @@ export declare const fetchPrettyUrl: (
     readonly ogData?: {
       readonly link: string;
       readonly image: string;
+      readonly description: string;
     };
   }>
 ) => Promise<
@@ -27,6 +28,7 @@ export declare const fetchPrettyUrl: (
     readonly ogData?: {
       readonly link: string;
       readonly image: string;
+      readonly description: string;
     };
   }>
 >;

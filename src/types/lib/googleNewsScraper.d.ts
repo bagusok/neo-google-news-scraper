@@ -20,6 +20,7 @@ declare const googleNewsScraper: (config: {
     readonly ogData?: {
       readonly link: string;
       readonly image: string;
+      readonly description: string;
     };
   }>
 >;

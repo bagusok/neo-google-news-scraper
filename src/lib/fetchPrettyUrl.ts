@@ -31,6 +31,7 @@ export const fetchPrettyUrl = async (
     readonly ogData?: {
       readonly link: string;
       readonly image: string;
+      readonly description: string;
     };
   }>
 ): Promise<
@@ -45,6 +46,7 @@ export const fetchPrettyUrl = async (
     readonly ogData?: {
       readonly link: string;
       readonly image: string;
+      readonly description: string;
     };
   }>
 > => {

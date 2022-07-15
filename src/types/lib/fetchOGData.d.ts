@@ -14,6 +14,7 @@ export declare const fetchOGData: (
     readonly ogData?: {
       readonly link: string;
       readonly image: string;
+      readonly description: string;
     };
   }>
 ) => Promise<
@@ -28,6 +29,7 @@ export declare const fetchOGData: (
     readonly ogData?: {
       readonly link: string;
       readonly image: string;
+      readonly description: string;
     };
   }>
 >;

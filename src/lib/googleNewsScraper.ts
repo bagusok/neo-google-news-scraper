@@ -33,6 +33,7 @@ export const googleNewsScraper = async (config: {
     readonly ogData?: {
       readonly link: string;
       readonly image: string;
+      readonly description: string;
     };
   }>
 > => {
@@ -61,6 +62,7 @@ export const googleNewsScraper = async (config: {
     readonly ogData?: {
       readonly link: string;
       readonly image: string;
+      readonly description: string;
     };
   }> = [];
   // eslint-disable-next-line functional/prefer-readonly-type
@@ -91,6 +93,7 @@ export const googleNewsScraper = async (config: {
       readonly ogData?: {
         readonly link: string;
         readonly image: string;
+        readonly description: string;
       };
     } = {
       title: $(this).find('h3').text() || '',

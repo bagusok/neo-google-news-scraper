@@ -4,7 +4,7 @@ import axios from 'axios';
 import { load } from 'cheerio';
 
 export const fetchOGDataForLink = async (sourceUrl: string) => {
-  const ogData = { link: '', image: '' };
+  const ogData = { link: '', image: '', description: '' };
   try {
     const response = await axios.get(sourceUrl);
     if (response.data) {
@@ -17,6 +17,10 @@ export const fetchOGDataForLink = async (sourceUrl: string) => {
       const url = $("meta[property='og:url']").attr('content');
       if (url) {
         ogData.link = url;
+      }
+      const description = $("meta[property='og:description']").attr('content');
+      if (description) {
+        ogData.description = description;
       }
     }
   } catch (error) {
@@ -37,6 +41,7 @@ export const fetchOGData = async (
     readonly ogData?: {
       readonly link: string;
       readonly image: string;
+      readonly description: string;
     };
   }>
 ): Promise<
@@ -51,6 +56,7 @@ export const fetchOGData = async (
     readonly ogData?: {
       readonly link: string;
       readonly image: string;
+      readonly description: string;
     };
   }>
 > => {
@@ -71,7 +77,7 @@ export const fetchOGData = async (
             source: '',
             datetime: new Date(),
             time: '',
-            ogData: { link: '', image: '' },
+            ogData: { link: '', image: '', description: '' },
           }
   );
   return articleWithMetaDataList;
