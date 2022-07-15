@@ -5,7 +5,7 @@ import { load } from 'cheerio';
 import {
   GoogleNewsScraperConfig,
   NeoGoogleNewsScraperResult,
-} from 'neo-scraper-google-news';
+} from 'neo-scraper-google-news-types';
 
 import { buildQueryString } from './buildQueryString';
 import { fetchOGData } from './fetchOGData';

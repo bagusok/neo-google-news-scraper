@@ -1,7 +1,7 @@
 /* eslint-disable functional/prefer-readonly-type */
 import axios from 'axios';
 import { load } from 'cheerio';
-import { NeoGoogleNewsScraperResult } from 'neo-scraper-google-news';
+import { NeoGoogleNewsScraperResult } from 'neo-scraper-google-news-types';
 
 export const fetchPrettyUrlForLink = async (sourceUrl: string) => {
   try {

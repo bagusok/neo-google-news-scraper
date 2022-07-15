@@ -1,7 +1,7 @@
 import {
   GoogleNewsScraperConfig,
   NeoGoogleNewsScraperResult,
-} from 'neo-scraper-google-news';
+} from 'neo-scraper-google-news-types';
 declare const googleNewsScraper: (
   config: GoogleNewsScraperConfig
 ) => Promise<ReadonlyArray<NeoGoogleNewsScraperResult>>;

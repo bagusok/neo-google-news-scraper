@@ -21,6 +21,7 @@
     "jsname",
     "libauth",
     "mkdir",
+    "nofollow",
     "prettierignore",
     "sandboxed",
     "timeframe",
