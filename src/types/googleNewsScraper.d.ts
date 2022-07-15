@@ -29,6 +29,10 @@ declare module 'neo-scraper-google-news-types' {
     readonly ogData?: OGDataType;
   };
 
-  const whatever: string;
-  export = whatever;
+  export const whatever: string;
+
+  // eslint-disable-next-line functional/prefer-type-literal
+  export interface testInterface {
+    readonly testKey: string;
+  }
 }
