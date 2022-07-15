@@ -65,7 +65,7 @@ export const fetchOGData = async (
       ...article,
       ogData: article.prettyUrl
         ? await fetchOGDataForLink(article.prettyUrl)
-        : article.prettyUrl,
+        : { link: '', image: '', description: '' },
     }))
   );
   const articleWithMetaDataList = articleWithMetaDataPromises.map(
