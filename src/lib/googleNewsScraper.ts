@@ -2,11 +2,12 @@
 /* eslint-disable functional/immutable-data */
 import axios from 'axios';
 import { load } from 'cheerio';
+
 import {
   GoogleNewsScraperConfig,
   NeoGoogleNewsScraperResult,
   testInterface,
-} from 'neo-scraper-google-news-types';
+} from '../types/googleNewsScraperTypes';
 
 import { buildQueryString } from './buildQueryString';
 import { fetchOGData } from './fetchOGData';

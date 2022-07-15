@@ -1,4 +1,4 @@
-import { NeoGoogleNewsScraperResult } from 'neo-scraper-google-news-types';
+import { NeoGoogleNewsScraperResult } from '../../types/googleNewsScraperTypes';
 export declare const fetchOGDataForLink: (sourceUrl: string) => Promise<{
   readonly link: string;
   readonly image: string;

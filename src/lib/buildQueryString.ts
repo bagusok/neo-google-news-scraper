@@ -1,4 +1,4 @@
-import { QueryVarsArgs } from 'neo-scraper-google-news-types';
+import { QueryVarsArgs } from '../types/googleNewsScraperTypes';
 
 const buildQueryString = (query: QueryVarsArgs) => {
   if (!query || typeof query !== 'object' || Object.keys(query).length === 0) {

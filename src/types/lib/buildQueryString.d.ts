@@ -1,3 +1,3 @@
-import { QueryVarsArgs } from 'neo-scraper-google-news-types';
+import { QueryVarsArgs } from '../../types/googleNewsScraperTypes';
 declare const buildQueryString: (query: QueryVarsArgs) => string;
 export { buildQueryString };
