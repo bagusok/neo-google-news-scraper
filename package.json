@@ -1,5 +1,5 @@
 {
-  "name": "neo-google-news-scraper",
+  "name": "neo-news-google-scraper",
   "version": "1.0.0",
   "description": "Google News Scraper in Typescript",
   "main": "build/main/index.js",
