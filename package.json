@@ -36,6 +36,7 @@
     "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d build/docs",
     "version": "standard-version",
     "reset-hard": "git clean -dfx && git reset --hard && npm i",
+    "prepare-test": "npm install",
     "prepare-release": "run-s reset-hard test cov:check doc:html version doc:publish",
     "release": "semantic-release"
   },
@@ -52,6 +53,8 @@
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
     "ava": "^3.12.1",
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
     "codecov": "^3.5.0",
     "cspell": "^4.1.0",
     "cz-conventional-changelog": "^3.3.0",
