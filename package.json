@@ -113,5 +113,10 @@
     "exclude": [
       "**/*.spec.js"
     ]
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   }
 }
