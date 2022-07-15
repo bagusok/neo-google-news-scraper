@@ -5,6 +5,7 @@ import { load } from 'cheerio';
 import {
   GoogleNewsScraperConfig,
   NeoGoogleNewsScraperResult,
+  testInterface,
 } from 'neo-scraper-google-news-types';
 
 import { buildQueryString } from './buildQueryString';
@@ -83,4 +84,8 @@ const googleNewsScraper = async (
   return filteredArticles;
 };
 
-export { googleNewsScraper };
+const testTypes = (testObj: testInterface) => {
+  return testObj;
+};
+
+export { googleNewsScraper, testTypes };
