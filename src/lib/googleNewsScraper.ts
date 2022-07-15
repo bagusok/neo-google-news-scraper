@@ -4,7 +4,6 @@ import axios from 'axios';
 import { load } from 'cheerio';
 
 import {
-  GoogleNewsScraperConfig,
   NeoGoogleNewsScraperResult,
   testInterface,
 } from '../types/googleNewsScraperTypes';
@@ -18,9 +17,17 @@ const GOOGLE_NEWS_BASE_URL = 'https://news.google.com/';
 const GOOGLE_NEWS_SEARCH_URL = `${GOOGLE_NEWS_BASE_URL}search`;
 const DEFAULT_TIME_FRAME = '7d';
 
-export const googleNewsScraper = async (
-  config: GoogleNewsScraperConfig
-): Promise<ReadonlyArray<NeoGoogleNewsScraperResult>> => {
+export const googleNewsScraper = async (config: {
+  readonly searchTerm: string;
+  readonly shouldFetchPrettyUrls?: boolean;
+  readonly shouldFetchOGData?: boolean;
+  readonly queryVars?: {
+    readonly hl?: string;
+    readonly gl?: string;
+    readonly ceid?: string;
+  };
+  readonly timeFrame?: string;
+}): Promise<ReadonlyArray<NeoGoogleNewsScraperResult>> => {
   const {
     searchTerm,
     shouldFetchPrettyUrls,
