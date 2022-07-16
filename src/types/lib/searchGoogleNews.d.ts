@@ -1,4 +1,4 @@
-declare const googleNewsScraper: (config: {
+declare const searchGoogleNews: (config: {
   readonly searchTerm: string;
   readonly shouldFetchPrettyUrls?: boolean;
   readonly shouldFetchOGData?: boolean;
@@ -24,4 +24,4 @@ declare const googleNewsScraper: (config: {
     };
   }>
 >;
-export { googleNewsScraper };
+export { searchGoogleNews };

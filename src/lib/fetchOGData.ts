@@ -6,7 +6,7 @@ import { load } from 'cheerio';
 export const fetchOGDataForLink = async (sourceUrl: string) => {
   const ogData = { link: '', image: '', description: '' };
   try {
-    const response = await axios.get(sourceUrl);
+    const response = await axios.get(sourceUrl, { maxRedirects: 5 });
     if (response.data) {
       // Scrape OG Meta Data from page source
       const $ = load(response.data);
@@ -23,8 +23,15 @@ export const fetchOGDataForLink = async (sourceUrl: string) => {
         ogData.description = description;
       }
     }
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('ERROR: fetchOGDataForLink', sourceUrl);
+    if (axios.isAxiosError(error)) {
+      // Access to config, request, and response
+      console.error(error.message);
+    } else {
+      // Just a stock error
+      console.error(error);
+    }
   }
   return ogData;
 };

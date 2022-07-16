@@ -4,7 +4,7 @@ import { load } from 'cheerio';
 
 export const fetchPrettyUrlForLink = async (sourceUrl: string) => {
   try {
-    const response = await axios.get(sourceUrl);
+    const response = await axios.get(sourceUrl, { maxRedirects: 5 });
     if (response.data) {
       // Get pretty link
       const $ = load(response.data);
@@ -13,8 +13,15 @@ export const fetchPrettyUrlForLink = async (sourceUrl: string) => {
         return prettyLink;
       }
     }
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('ERROR: fetchPrettyUrlForLink', sourceUrl);
+    if (axios.isAxiosError(error)) {
+      // Access to config, request, and response
+      console.error(error.message);
+    } else {
+      // Just a stock error
+      console.error(error);
+    }
   }
   return '';
 };

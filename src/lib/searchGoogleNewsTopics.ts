@@ -11,7 +11,7 @@ const GOOGLE_NEWS_BASE_URL = 'https://news.google.com/';
 const GOOGLE_NEWS_SEARCH_URL = `${GOOGLE_NEWS_BASE_URL}search`;
 const DEFAULT_TIME_FRAME = '7d';
 
-export const googleNewsScraper = async (config: {
+export const searchGoogleNewsTopics = async (config: {
   readonly searchTerm: string;
   readonly shouldFetchPrettyUrls?: boolean;
   readonly shouldFetchOGData?: boolean;
@@ -46,7 +46,7 @@ export const googleNewsScraper = async (config: {
   } = config;
   const queryString = queryVars ? buildQueryString(queryVars) : '';
   const url = `${GOOGLE_NEWS_SEARCH_URL}?${queryString}&q=${searchTerm} when:${timeFrame}`;
-  const res = await axios.get(url);
+  const res = await axios.get(url, { maxRedirects: 5 });
   const content = res.data;
   const $ = load(content);
   const articles = $('a[href^="./article"]').closest('div[jslog]');
