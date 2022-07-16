@@ -4,7 +4,10 @@ import { load } from 'cheerio';
 
 export const fetchPrettyUrlForLink = async (sourceUrl: string) => {
   try {
-    const response = await axios.get(sourceUrl, { maxRedirects: 5 });
+    const response = await axios.get(sourceUrl, {
+      maxRedirects: 5,
+      timeout: 5000,
+    });
     if (response.data) {
       // Get pretty link
       const $ = load(response.data);

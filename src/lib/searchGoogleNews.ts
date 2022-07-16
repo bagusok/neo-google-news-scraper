@@ -46,7 +46,7 @@ export const searchGoogleNews = async (config: {
   } = config;
   const queryString = queryVars ? buildQueryString(queryVars) : '';
   const url = `${GOOGLE_NEWS_SEARCH_URL}?${queryString}&q=${searchTerm} when:${timeFrame}`;
-  const res = await axios.get(url, { maxRedirects: 5 });
+  const res = await axios.get(url, { maxRedirects: 5, timeout: 5000 });
   const content = res.data;
   const $ = load(content);
   const articles = $('a[href^="./article"]').closest('div[jslog]');
