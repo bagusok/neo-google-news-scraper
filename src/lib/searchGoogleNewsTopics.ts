@@ -1,8 +1,8 @@
 /* eslint-disable functional/no-this-expression */
 /* eslint-disable functional/immutable-data */
-import axios from 'axios';
 import { load } from 'cheerio';
 
+import customAxios from './axiosInterceptor';
 import { buildQueryString } from './buildQueryString';
 import { fetchOGData } from './fetchOGData';
 import { fetchPrettyUrl } from './fetchPrettyUrl';
@@ -46,7 +46,7 @@ export const searchGoogleNewsTopics = async (config: {
   } = config;
   const queryString = queryVars ? buildQueryString(queryVars) : '';
   const url = `${GOOGLE_NEWS_SEARCH_URL}?${queryString}&q=${searchTerm} when:${timeFrame}`;
-  const res = await axios.get(url, { maxRedirects: 5, timeout: 5000 });
+  const res = await customAxios.get(url, { maxRedirects: 5, timeout: 30000 });
   const content = res.data;
   const $ = load(content);
   const articles = $('a[href^="./article"]').closest('div[jslog]');

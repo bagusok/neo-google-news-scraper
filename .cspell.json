@@ -3,6 +3,8 @@
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/master/cspell.schema.json",
   "language": "en",
   "words": [
+    "apng",
+    "avif",
     "bitauth",
     "bitjson",
     "ceid",
@@ -19,6 +21,7 @@
     "globby",
     "jslog",
     "jsname",
+    "KHTML",
     "libauth",
     "mkdir",
     "nofollow",

@@ -2,11 +2,13 @@
 import axios from 'axios';
 import { load } from 'cheerio';
 
+import customAxios from './axiosInterceptor';
+
 export const fetchPrettyUrlForLink = async (sourceUrl: string) => {
   try {
-    const response = await axios.get(sourceUrl, {
+    const response = await customAxios.get(sourceUrl, {
       maxRedirects: 5,
-      timeout: 5000,
+      timeout: 30000,
     });
     if (response.data) {
       // Get pretty link

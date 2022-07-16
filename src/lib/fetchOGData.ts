@@ -3,13 +3,12 @@
 import axios from 'axios';
 import { load } from 'cheerio';
 
+import customAxios from './axiosInterceptor';
+
 export const fetchOGDataForLink = async (sourceUrl: string) => {
   const ogData = { link: '', image: '', description: '' };
   try {
-    const response = await axios.get(sourceUrl, {
-      maxRedirects: 5,
-      timeout: 5000,
-    });
+    const response = await customAxios.get(sourceUrl);
     if (response.data) {
       // Scrape OG Meta Data from page source
       const $ = load(response.data);
